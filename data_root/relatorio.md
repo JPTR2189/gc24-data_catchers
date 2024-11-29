@@ -75,7 +75,7 @@ Gêneros de países como "turkey" e "world", além de "sleep", foram removidos, 
 ### Verificação de Duplicados
 Foram encontrados duplicados em nomes de artistas e álbuns, algo comum em datasets de música. No entanto, optou-se por não remover esses duplicados, já que um artista ou álbum pode aparecer em várias faixas. O que foi removido foram os nomes duplicados de músicas.
 
-### Verificação de Inconsistências
+### Verificação de Inconsistências (Jean e João)
 Foi realizada uma verificação minuciosa para garantir que não houvesse inconsistências nos dados (como valores não numéricos em colunas de texto ou valores de texto em colunas numéricas), e não foram encontradas inconsistências desse tipo.
 
 ### Análise Estatística
@@ -92,3 +92,11 @@ Foi realizada uma verificação minuciosa para garantir que não houvesse incons
   
 ### Considerações Finais sobre Outliers
 * A análise de outliers foi crucial para garantir a qualidade dos dados. Músicas com 0 de popularidade e aquelas com duração abaixo de 1 minuto ou acima de 15 minutos foram removidas, pois não seguiam os padrões esperados para cada gênero musical. Essas decisões foram baseadas em análises detalhadas das distribuições de duração e popularidade, o que ajudou a refinar o dataset e garantir que as análises subsequentes fossem representativas do comportamento real do público nas plataformas de streaming.
+
+## Conversão de dados categóricos para numéricos: Jean
+
+* Foram convertidas todas as linhas da coluna 'track_genre' usando o encodador 'OneHotEnconder', para que a coluna estivesse preparada para ser usada no processo de treinamento do modelo.
+
+## Calcular estatísticas descritivas (Moda e Desvio Padrão): Anderson
+
+* Foi criado um novo Dataframe contento os valores da moda e desvio-padrão, calculando as estatísticas para as todas as colunas.
