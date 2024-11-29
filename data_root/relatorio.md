@@ -99,4 +99,4 @@ Foi realizada uma verificação minuciosa para garantir que não houvesse incons
 
 ## Calcular estatísticas descritivas (Moda e Desvio Padrão): Anderson
 
-* Foi criado um novo Dataframe contento os valores da moda e desvio-padrão, calculando as estatísticas para as todas as colunas.
+* Foi criado um novo Dataframe contento os valores de moda e desvio-padrão, calculando as estatísticas para todas as colunas do Dataframe.
