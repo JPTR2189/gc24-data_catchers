@@ -56,47 +56,61 @@ Apliquei a função classificar_velocidade à coluna tempo do DataFrame, criando
 
 ## Tratamento e Limpeza dos Dados: João Pedro
 
-### Transformação de Colunas
-A coluna duration_ms, que representava a duração das músicas em milissegundos, foi convertida para segundos e minutos para facilitar a interpretação dos dados. A coluna original foi removida, pois se tornou redundante.
+### Estrutura do Código
 
-### Tratamento de Valores Nulos
-Foi feita a verificação de valores nulos no dataset e, como foram encontrados poucos registros ausentes, esses valores foram removidos para manter a integridade dos dados.
+### 1. Importação de Bibliotecas
+- Utilização das bibliotecas:
+  - pandas: para manipulação de dados.
+  - matplotlib e seaborn: para visualização de dados.
+  - numpy: para operações matemáticas.
 
-### Remoção de Gênero Desnecessário
-Gêneros de países como "turkey" e "world", além de "sleep", foram removidos, pois eram irrelevantes para a análise. Optou-se por manter apenas os gêneros relevantes, como os do Brasil, Espanha e países latinos.
+### 2. Leitura e Pré-processamento de Dados
+- O dataset foi carregado utilizando pandas.read_csv para transformar o arquivo CSV em um DataFrame.
+- Colunas desnecessárias foram removidas e valores ausentes foram tratados com substituição por valores médios ou médias da coluna.
+- Conversão de variáveis de data em formato de timestamp e ajuste dos tipos de dados conforme necessário.
 
-### Tratamento de Outliers
-* Outliers foram identificados e tratados nas colunas de popularidade e duração:
+### 3. Cálculos Limiar
+- Definição de limiares para características específicas:
+  - *Danceability*: limiar para separar músicas mais dançantes (valores > 0.7).
+  - *Valence*: músicas mais alegres ou tristes (valores < 0.3 para tristes e > 0.7 para alegres).
+  - *Energy* e *Loudness*: análise de correlação entre música de alta energia e volume maior.
 
-* Popularidade: Foi verificado que 14% das músicas apresentavam popularidade igual a 0. Como esses registros representavam uma pequena parte do dataset e poderiam distorcer as análises, foram removidos.
+### 4. Análises e Agrupamentos
+- Agrupamento de dados por *gênero musical* utilizando groupby e cálculo das médias de *danceability, **valence, **energy* e *loudness* para cada grupo.
+- Aplicação de correlações e criação de gráficos para visualizar padrões e tendências.
 
-* Duração: Para a coluna de duração, foram analisadas músicas com menos de 1 minuto e mais de 15 minutos. Como a maioria das músicas dentro de cada gênero seguiam a média de duração esperada (por exemplo, no gênero rock, a maioria das faixas tem entre 3 a 5 minutos), as faixas fora dessa faixa foram descartadas, pois eram consideradas anômalas para o padrão do dataset.
+### 5. Visualizações
+- Gráficos de Barras e Boxplots: comparação de valores de **danceability* e *valence* entre os gêneros.
+- Histogramas: distribuição de características como **energy* e *loudness* nas músicas.
+- Heatmaps de Correlação: relações entre variáveis como **energy, **loudness* e *acousticness*.
 
-### Verificação de Duplicados
-Foram encontrados duplicados em nomes de artistas e álbuns, algo comum em datasets de música. No entanto, optou-se por não remover esses duplicados, já que um artista ou álbum pode aparecer em várias faixas. O que foi removido foram os nomes duplicados de músicas.
+### 6. Identificação de Tendências
+- Identificação de tendências gerais como:
+  - Gêneros como *forró* e *salsa* apresentaram altos índices de *valence*, indicando características mais alegres e dançantes.
+  - Gêneros como *black-metal* e *ambient* com *valence* baixo, refletindo características mais melancólicas.
+  - A correlação entre *danceability* e *valence* mostrou que músicas dançantes tendem a ser mais alegres.
 
-### Verificação de Inconsistências (Jean e João)
-Foi realizada uma verificação minuciosa para garantir que não houvesse inconsistências nos dados (como valores não numéricos em colunas de texto ou valores de texto em colunas numéricas), e não foram encontradas inconsistências desse tipo.
+### 7. Resultados Específicos por Gênero
+- *Anime* e *K-pop*: Gêneros com grande apelo em comunidades globais, com alta popularidade e engajamento.
+- *Brazil*: Músicas que representam aspectos culturais locais, com forte identificação e atratividade nacional.
+- *Chill*: Gênero associado a músicas mais suaves, com **low energy* e *high acousticness*, ideal para momentos de foco, estudo ou relaxamento.
 
-### Análise Estatística
-* Após o tratamento dos dados, foi realizada uma análise estatística descritiva para entender melhor a distribuição das variáveis relevantes, como popularidade, duração, e outras métricas relacionadas.
+### 8. Conclusões
+- A análise detalhou como características como *energia* e *danceability* estão diretamente relacionadas a emoções como felicidade ou tristeza.
+- Gêneros populares como *K-pop, **anime, **salsa* e *forró* apresentaram características de músicas dançantes e alegres.
+- A relação entre *acousticness* e *energy* mostrou que músicas acústicas são mais suaves, enquanto músicas de maior energia, como eletrônicas, são mais intensas.
 
-### Análise de Correlação e Visualizações
-* Foram feitas visualizações para examinar as relações entre a popularidade das músicas e variáveis como dançabilidade, energia, instrumentalidade, BPM, e valência emocional.
-
-### Insights realizados ao longo do tratamento:
-* Duração e Popularidade: Músicas mais curtas tendem a ser mais populares, um padrão observado em plataformas de streaming, onde faixas mais curtas são mais acessíveis e atraem mais ouvintes.
-* Valência e Popularidade: Músicas com valência emocional negativa, ou seja, músicas mais tristes, também podem alcançar alta popularidade, especialmente em gêneros como deep house, que combinam batidas dançantes com letras melancólicas.
-* Instrumentalidade e Popularidade: Músicas populares geralmente têm menos instrumentalidade, com ênfase em vocais, o que facilita a conexão emocional com o público.
-* Danceabilidade e Popularidade: A popularidade não depende exclusivamente da danceabilidade; muitas músicas populares têm índices de danceabilidade moderados (entre 0.5 e 0.7), o que sugere que o público valoriza uma combinação de elementos emocionais e rítmicos.
-  
-### Considerações Finais sobre Outliers
-* A análise de outliers foi crucial para garantir a qualidade dos dados. Músicas com 0 de popularidade e aquelas com duração abaixo de 1 minuto ou acima de 15 minutos foram removidas, pois não seguiam os padrões esperados para cada gênero musical. Essas decisões foram baseadas em análises detalhadas das distribuições de duração e popularidade, o que ajudou a refinar o dataset e garantir que as análises subsequentes fossem representativas do comportamento real do público nas plataformas de streaming.
-
-## Conversão de dados categóricos para numéricos: Jean
+## Calcular estatísticas descritivas (Moda e Desvio Padrão): Anderson e Jean
 
 * Foram convertidas todas as linhas da coluna 'track_genre' usando o encodador 'OneHotEnconder', para que a coluna estivesse preparada para ser usada no processo de treinamento do modelo.
 
-## Calcular estatísticas descritivas (Moda e Desvio Padrão): Anderson
-
 * Foi criado um novo Dataframe contento os valores de moda e desvio-padrão, calculando as estatísticas para todas as colunas do Dataframe.
+
+* Esta análise de estatísticas do conjunto de dados tem foco em duas métricas importante: Moda e Desvio-padrão.
+
+* Moda:
+    *A moda de uma coluna é o valor que aparece com maior frequência. Para cada numero, foi identificado o valor mais comum entre os dados. 
+* .Desvio-padrão:
+    *O Desvio-padrão indica o quão distante os valores de um conjunto de dados estão em relação à média ou valor central, enquanto valores altos indicam grande variações nos dados, os valores baixos indicam dados mais concentrados.
+
+* Está análise proporciona uma visão rápida e objetiva das colunas numéricas do conjunto de dados, permitindo entender as principais tendências como a "Moda" e a variação do "Desvio-Padão" de cada váriavel.
