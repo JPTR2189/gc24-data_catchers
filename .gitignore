@@ -1,0 +1,47 @@
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VSCode settings
+.vscode/
+
+# IPython history
+.history
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+
+# Jupyter Notebook specific outputs
+*.nbconvert/
+*.nb.html
+
+# Hidden files and logs
+.*.swp
+*.log
+
+# Ignore virtual environment folders
+.virtualenv/
+python_env/
+
+# Data files
+*.h5
+*.hdf5
+*.db
+*.sqlite
+*.pkl
+*.dill
+
+# Output and temporary files
+*.out
+*.tmp
+*.bak
+
+# macOS specific files
+.DS_Store
